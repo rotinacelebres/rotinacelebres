@@ -216,13 +216,20 @@
 </section>
 <!-- === /CÉLEBREBOT === -->
 
-      <div class="mt-10 text-center">
-        <p class="inline-flex items-center gap-2 px-5 py-3 rounded-full border border-yellow-300/40 bg-yellow-300/10 text-yellow-200">
-          Valor somado: <span class="line-through opacity-80">R$ 157</span> • Hoje: <span class="text-white font-semibold">R$ 47,90</span>
-        </p>
-      </div>
-    </div>
-  </section>
+      <!-- === BOTÃO DE VALOR SOMADO (CÉLEBREBOT) === -->
+<div class="text-center mt-10">
+  <p class="text-sm text-white/60 mb-1">Valor total dos bônus e rotinas:</p>
+
+  <button
+    onclick="document.getElementById('plano-premium').scrollIntoView({behavior: 'smooth'})"
+    class="mt-3 inline-flex flex-col items-center justify-center rounded-2xl bg-gradient-to-r from-yellow-400 to-yellow-600 px-10 py-5 text-black font-extrabold shadow-lg hover:scale-105 hover:shadow-yellow-400/40 transition-transform duration-300"
+  >
+    <span class="text-base font-semibold opacity-80 line-through decoration-red-500">R$ 157</span>
+    <span class="text-3xl font-extrabold">Hoje por R$ 47,90</span>
+    <span class="text-sm font-semibold mt-1 opacity-80">Clique para acessar a versão Premium</span>
+  </button>
+</div>
+<!-- === /BOTÃO DE VALOR SOMADO === -->
 
   <!-- BENEFÍCIOS -->
   <section id="benefits" class="py-14">
@@ -454,6 +461,7 @@ Comece hoje e veja a diferença já na primeira semana.</p>
       </div>
 
       <!-- CARD DIREITO — MATERIAL COMPLETO -->
+      <div id="plano-premium" class="rounded-3xl p-8 gold-grad text-black">
       <div class="rounded-3xl p-6 md:p-8 gold-grad text-black card-shadow max-w-[340px] mx-auto">
         <h3 class="text-xl md:text-2xl font-extrabold">Versão Premium</h3>
         <div class="mt-1 text-xs md:text-sm opacity-80">Oferta de lançamento</div>
@@ -489,7 +497,8 @@ Comece hoje e veja a diferença já na primeira semana.</p>
 
         <p class="mt-3 text-[10px] md:text-xs text-center opacity-80 text-black/80">7 dias de garantia. Sem risco.  
 Comece hoje e veja a diferença já na primeira semana.</p>
-       
+
+        </div>
       </div>
 
     </div>
