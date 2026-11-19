@@ -106,7 +106,7 @@
       transition: transform .2s ease, background .2s ease;
     }
     .btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
-    .btn:focus-visible, .opt:focus-visible, .copy:focus-visible, .link-btn:focus-visible, summary:focus-visible, .wa:focus-visible {
+    .btn:focus-visible, .opt:focus-visible, .link-btn:focus-visible, summary:focus-visible, .wa:focus-visible {
       outline: 3px solid #1D1A15; outline-offset: 3px;
     }
     .btn .arrow { font-size: 18px; line-height: 1; }
@@ -145,21 +145,15 @@
     }
     .vsl-placeholder img { height: 100%; width: auto; border-radius: 8px; box-shadow: 0 10px 24px -8px rgba(29,26,21,.4); }
 
-    /* Caixa do cupom */
-    .coupon-wrap { margin-top: 24px; }
-    .coupon-label { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-    .coupon {
-      position: relative; display: flex; align-items: stretch; margin-top: 10px;
-      background: var(--surface); border: 1.5px dashed var(--gold-deep); border-radius: 12px; overflow: hidden;
+    /* Bloco da Black Friday no topo */
+    .promo-box { margin-top: 24px; }
+    .promo-label { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .countdown {
+      display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px;
+      padding: 12px 16px; border-radius: 12px; background: #1D1A15; color: #fff;
     }
-    .coupon .code { flex: 1; padding: 10px 14px; text-align: left; }
-    .coupon .code small { display: block; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-    .coupon .code b { font-size: 18px; letter-spacing: .04em; }
-    .copy {
-      display: flex; align-items: center; gap: 6px; padding: 0 16px; border: 0; border-left: 1.5px dashed var(--gold-deep);
-      background: var(--gold-soft); color: var(--gold-deep); font-weight: 700; cursor: pointer; font-size: 14px;
-    }
-    .coupon-wrap + .btn, .coupon + .btn { margin-top: 16px; }
+    .cd-label { font-size: 13px; color: #E9E2D2; text-align: left; }
+    .cd-time { font-weight: 800; font-size: 18px; font-variant-numeric: tabular-nums; color: var(--gold); white-space: nowrap; }
 
     /* Cartões */
     .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
@@ -255,13 +249,13 @@
     .installments { font-size: 13.5px; color: var(--muted); text-align: right; margin-top: 6px; }
 
     .alt-plan { margin-top: 18px; text-align: left; }
-    .alt-plan .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .alt-plan .top { display: flex; flex-direction: column; gap: 4px; }
     .alt-plan h3 { font-size: 17px; }
     .alt-plan .p { font-weight: 800; font-size: 22px; white-space: nowrap; }
     .alt-plan ul { margin-top: 12px; display: grid; gap: 6px; font-size: 14.5px; color: var(--muted); }
     .alt-plan .btn { margin-top: 16px; min-height: 50px; }
 
-    /* Sem promoção: some selo, cupom e preço riscado */
+    /* Sem promoção: some selo, contagem e preço riscado */
     body.sem-promo .promo-only { display: none !important; }
     body:not(.sem-promo) .no-promo-only { display: none !important; }
 
@@ -296,7 +290,7 @@
       display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -6px rgba(0,0,0,.35);
       transition: opacity .3s ease, transform .3s ease;
     }
-    /* Aparece depois do topo, para não cobrir o cupom nem o botão principal */
+    /* Aparece depois do topo, para não cobrir a contagem nem o botão principal */
     .wa.hide { opacity: 0; transform: translateY(16px); pointer-events: none; }
     .wa svg { width: 30px; height: 30px; }
 
@@ -362,14 +356,11 @@
       </div>
     </div>
 
-    <div class="coupon-wrap promo-only">
-      <p class="coupon-label" data-promo="heroLabel">R$ 20 de desconto no Premium até 30/11</p>
-      <div class="coupon">
-        <div class="code"><small>Usando o cupom</small><b data-promo="code">BLACKCELEBRES</b></div>
-        <button class="copy" type="button" data-copy aria-label="Copiar cupom">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span>Copiar</span>
-        </button>
+    <div class="promo-box promo-only">
+      <p class="promo-label">Até 44% off · o preço sobe em 1º/12</p>
+      <div class="countdown" aria-live="off">
+        <span class="cd-label">A Black Friday termina em</span>
+        <span class="cd-time" data-countdown>10d 00h 00m</span>
       </div>
     </div>
 
@@ -564,42 +555,42 @@
           <span class="muted">Versão Premium</span>
         </div>
         <div class="promo-only">
-          <div class="row"><span>Preço normal</span><span class="dots"></span><s data-promo="from">R$ 67,90</s></div>
-          <div class="row"><span>Desconto Black</span><span class="dots"></span><span class="off" data-promo="off">− R$ 20,00</span></div>
+          <div class="row"><span>A partir de 1º/12</span><span class="dots"></span><s>R$ 97,90</s></div>
+          <div class="row"><span>Desconto Black Friday</span><span class="dots"></span><span class="off">− 30%</span></div>
         </div>
         <div class="pay">
           <span class="label">Você paga</span>
-          <span class="value promo-only"><sup>R$</sup>47<small>,90</small></span>
-          <span class="value no-promo-only"><sup>R$</sup>67<small>,90</small></span>
+          <span class="value promo-only"><sup>R$</sup>67<small>,90</small></span>
+          <span class="value no-promo-only"><sup>R$</sup>97<small>,90</small></span>
         </div>
-        <p class="installments promo-only">ou em até 7x no cartão</p>
-        <p class="installments no-promo-only">ou em até 7x de R$ 11,33</p>
+        <p class="installments promo-only">ou em até 7x de R$ 11,33</p>
+        <p class="installments no-promo-only">ou em até 7x no cartão</p>
 
-        <div class="coupon promo-only" style="margin-top:18px;">
-          <div class="code"><small>Usando o cupom</small><b data-promo="code">BLACKCELEBRES</b></div>
-          <button class="copy" type="button" data-copy aria-label="Copiar cupom">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span>Copiar</span>
-          </button>
+        <div class="countdown promo-only" style="margin-top:18px;">
+          <span class="cd-label">Esse preço acaba em</span>
+          <span class="cd-time" data-countdown>10d 00h 00m</span>
         </div>
       </div>
 
       <a href="https://checkout.wiven.com.br/checkout/cmvsct4v702f001ptb43gockz?offer=BDXGON8" class="btn cta reveal" data-plan="premium" style="margin-top:22px;"><span>Quero a Versão Premium</span><span class="arrow" aria-hidden="true">→</span></a>
-      <p class="under-btn promo-only">Cole o cupom no checkout. Válido para a Versão Premium até 30/11.</p>
+      <p class="under-btn promo-only">Preço de Black Friday até 30/11. Acesso imediato e 7 dias de garantia.</p>
       <p class="under-btn no-promo-only">Acesso imediato e 7 dias de garantia.</p>
 
       <div class="card alt-plan reveal">
         <div class="top">
           <h3>Prefere começar só com o essencial?</h3>
-          <span class="p">R$ 37,90</span>
+          <span class="p promo-only"><s class="muted" style="font-size:15px;font-weight:600;">R$ 67,90</s> R$ 37,90</span>
+          <span class="p no-promo-only">R$ 67,90</span>
         </div>
+        <p class="small promo-only" style="margin-top:6px;color:var(--ok);font-weight:700;">− 44% na Black Friday · R$ 67,90 a partir de 1º/12</p>
         <ul>
           <li>✓ E-book principal e checklist virtual</li>
           <li>✓ 1 bônus, acesso imediato e garantia de 7 dias</li>
           <li class="muted">✕ Sem planner, áudios, vídeos e CélebreBot</li>
         </ul>
         <a href="https://checkout.wiven.com.br/checkout/cmw0zmv7x0j1001pq3go0r3vi?offer=6681674" class="btn btn-dark cta" data-plan="essencial">Quero a Versão Essencial</a>
-        <p class="under-btn" style="margin-top:8px;">ou em até 7x de R$ 6,32</p>
+        <p class="under-btn promo-only" style="margin-top:8px;">ou em até 7x de R$ 6,32</p>
+        <p class="under-btn no-promo-only" style="margin-top:8px;">ou em até 7x no cartão</p>
       </div>
     </div>
   </section>
@@ -643,8 +634,8 @@
           <p>A Essencial traz o e-book e o checklist virtual. A Premium inclui também o planner, os áudios, os vídeos, o CélebreBot e 4 bônus.</p>
         </details>
         <details class="faq reveal promo-only">
-          <summary>Como uso o cupom?</summary>
-          <p>Copie o cupom BLACKCELEBRES, clique em "Quero a Versão Premium" e cole o cupom no campo de cupom do checkout. Ele vale até 30/11.</p>
+          <summary>Até quando vale o preço de Black Friday?</summary>
+          <p>Até 30/11, às 23h59. A partir de 1º/12, o Premium passa a custar R$ 97,90 e o Essencial, R$ 67,90. Não precisa de cupom: o desconto já está no checkout.</p>
         </details>
         <details class="faq reveal">
           <summary>Preciso de algum aplicativo?</summary>
@@ -719,12 +710,12 @@
     // Enquanto estiver vazio, aparece a capa do e-book no lugar do vídeo.
     var VSL_EMBED_URL = "";
 
-    // Promoção. Depois de "fim", a página volta sozinha ao preço normal.
-    // O cupom precisa existir no checkout da Wiven com o mesmo nome e valor.
+    // Black Friday: Premium R$ 67,90 e Essencial R$ 37,90 até "fim".
+    // Depois disso a página mostra sozinha R$ 97,90 e R$ 67,90.
+    // No dia 1º/12, suba os preços na Wiven também (ou troque os links de checkout abaixo).
     var PROMO = {
       ativa: true,
-      fim: "2026-11-30T23:59:59-03:00",
-      cupom: "BLACKCELEBRES"
+      fim: "2026-11-30T23:59:59-03:00"
     };
 
     /* ========= TEXTOS QUE MUDAM CONFORME A RESPOSTA ========= */
@@ -851,30 +842,18 @@
     }
 
     /* ---------- Promoção ---------- */
-    var promoValida = PROMO.ativa && Date.now() < new Date(PROMO.fim).getTime();
-    if (!promoValida) document.body.classList.add('sem-promo');
-    document.querySelectorAll('[data-promo="code"]').forEach(function (el) { el.textContent = PROMO.cupom; });
-
-    document.querySelectorAll('[data-copy]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var label = b.querySelector('span');
-        function ok() {
-          label.textContent = 'Copiado!';
-          setTimeout(function () { label.textContent = 'Copiar'; }, 2000);
-          if (window.fbq) fbq('trackCustom', 'CopiouCupom', { cupom: PROMO.cupom });
-        }
-        if (navigator.clipboard && window.isSecureContext) {
-          navigator.clipboard.writeText(PROMO.cupom).then(ok, fallback);
-        } else { fallback(); }
-        function fallback() {
-          var t = document.createElement('textarea');
-          t.value = PROMO.cupom; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
-          document.body.appendChild(t); t.select();
-          try { document.execCommand('copy'); ok(); } catch (e) { label.textContent = PROMO.cupom; }
-          document.body.removeChild(t);
-        }
-      });
-    });
+    var fimPromo = new Date(PROMO.fim).getTime();
+    var cds = document.querySelectorAll('[data-countdown]');
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function tick() {
+      var resta = fimPromo - Date.now();
+      if (!PROMO.ativa || resta <= 0) { document.body.classList.add('sem-promo'); return false; }
+      var m = Math.floor(resta / 60000), d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60);
+      var txt = (d > 0 ? d + 'd ' : '') + pad(h) + 'h ' + pad(m % 60) + 'm';
+      cds.forEach(function (el) { el.textContent = txt; });
+      return true;
+    }
+    if (tick()) var cdTimer = setInterval(function () { if (!tick()) clearInterval(cdTimer); }, 30000);
 
     /* ---------- Checkout: Pixel (as UTMs são levadas pela Utmify) ---------- */
     document.querySelectorAll('a.cta').forEach(function (a) {
