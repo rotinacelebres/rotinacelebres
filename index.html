@@ -65,7 +65,6 @@
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
     }
-    body.modal-open { overflow: hidden; }
     img { max-width: 100%; display: block; }
     a { color: inherit; }
     h1, h2, h3, p, ul, figure, blockquote { margin: 0; }
@@ -106,7 +105,7 @@
       transition: transform .2s ease, background .2s ease;
     }
     .btn:hover { background: var(--gold-hover); transform: translateY(-1px); }
-    .btn:focus-visible, .opt:focus-visible, .link-btn:focus-visible, summary:focus-visible, .wa:focus-visible {
+    .btn:focus-visible, summary:focus-visible, .wa:focus-visible {
       outline: 3px solid #1D1A15; outline-offset: 3px;
     }
     .btn .arrow { font-size: 18px; line-height: 1; }
@@ -281,7 +280,6 @@
     footer { border-top: 1px solid var(--line); padding: 36px 0 96px; text-align: center; font-size: 14px; color: var(--muted); }
     .foot-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-top: 14px; }
     .foot-links a { color: var(--muted); }
-    .link-btn { margin-top: 18px; background: none; border: 0; color: var(--muted); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; font-size: 14px; padding: 6px; }
 
     /* WhatsApp flutuante */
     .wa {
@@ -293,33 +291,6 @@
     /* Aparece depois do topo, para não cobrir a contagem nem o botão principal */
     .wa.hide { opacity: 0; transform: translateY(16px); pointer-events: none; }
     .wa svg { width: 30px; height: 30px; }
-
-    /* Janela da pergunta */
-    .modal {
-      position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
-      padding: 16px; background: rgba(29,26,21,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-    }
-    .modal[hidden] { display: none; }
-    .modal-box {
-      width: 100%; max-width: 440px; max-height: calc(100vh - 32px); overflow-y: auto;
-      background: var(--surface); border-radius: 22px; padding: 24px 20px 20px;
-      box-shadow: 0 30px 60px -20px rgba(0,0,0,.45); animation: pop .35s cubic-bezier(.2,.8,.2,1);
-    }
-    .modal-box:focus { outline: none; }
-    @keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
-    .modal-eyebrow { font-size: 11.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-deep); }
-    .modal h2 { font-size: 24px; line-height: 1.2; font-weight: 800; letter-spacing: -.01em; margin-top: 8px; }
-    .opts { display: grid; gap: 10px; margin-top: 18px; }
-    .opt {
-      text-align: left; width: 100%; padding: 14px 16px; border-radius: 14px; cursor: pointer;
-      background: var(--bg); border: 1.5px solid var(--line); color: var(--text); transition: border-color .15s ease, background .15s ease;
-    }
-    .opt b { display: block; font-size: 15.5px; }
-    .opt span { display: block; font-size: 13.5px; color: var(--muted); margin-top: 3px; line-height: 1.45; }
-    .opt[aria-checked="true"] { border-color: var(--gold-deep); background: var(--gold-soft); box-shadow: inset 0 0 0 1px var(--gold-deep); }
-    .modal .btn { margin-top: 16px; }
-    .modal .btn[disabled] { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
-    .modal-note { margin-top: 12px; font-size: 12.5px; color: var(--muted); text-align: center; }
 
     /* Aparecer ao rolar */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
@@ -669,7 +640,6 @@
         <a href="politica.html">Política de Privacidade</a>
         <a href="mailto:helpdeskatend@gmail.com">Contato</a>
       </div>
-      <button class="link-btn" type="button" id="change-profile">Alterar meu perfil</button>
     </div>
   </footer>
 
@@ -677,30 +647,6 @@
   <a class="wa hide" id="wa" href="https://wa.me/5547989147859?text=Ol%C3%A1%21%20Quero%20come%C3%A7ar%20o%20Rotinas%20C%C3%A9lebres%2C%20mas%20tenho%20uma%20d%C3%BAvida%3A%20" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
     <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.04 3C9.4 3 4 8.36 4 14.97c0 2.11.56 4.17 1.62 5.99L4 29l8.25-1.6a12.1 12.1 0 0 0 3.79.6C22.68 28 28 22.64 28 16.03 28 9.42 22.68 3 16.04 3Zm0 22.6c-1.2 0-2.38-.2-3.5-.6l-.25-.09-4.9.95.98-4.73-.16-.26a9.6 9.6 0 0 1-1.5-5.1c0-5.32 4.04-9.36 9.33-9.36 5.28 0 9.34 4.04 9.34 9.62 0 5.3-4.06 9.57-9.34 9.57Zm5.12-7.03c-.28-.14-1.66-.82-1.92-.91-.26-.1-.44-.14-.63.14-.19.28-.72.91-.89 1.1-.16.18-.33.2-.6.07-.29-.14-1.19-.44-2.27-1.4a8.5 8.5 0 0 1-1.57-1.95c-.16-.28 0-.43.13-.57.12-.12.28-.33.42-.49.14-.16.19-.28.28-.47.1-.19.05-.35-.02-.49-.07-.14-.63-1.51-.86-2.07-.23-.54-.46-.47-.63-.48h-.54c-.18 0-.49.07-.74.35-.26.28-.98.96-.98 2.33 0 1.38 1 2.71 1.15 2.9.14.18 1.97 3 4.77 4.2.67.29 1.19.46 1.6.59.67.21 1.28.18 1.76.11.54-.08 1.66-.68 1.9-1.33.23-.66.23-1.22.16-1.33-.07-.12-.25-.19-.53-.33Z"/></svg>
   </a>
-
-  <!-- ===================== 0. JANELA DA PERGUNTA ===================== -->
-  <div class="modal" id="perfil-modal" role="dialog" aria-modal="true" aria-labelledby="perfil-title" hidden>
-    <div class="modal-box" tabindex="-1">
-      <p class="modal-eyebrow">Personalize sua experiência</p>
-      <h2 id="perfil-title">Como está a sua rotina hoje?</h2>
-      <div class="opts" role="radiogroup" aria-labelledby="perfil-title">
-        <button type="button" class="opt" role="radio" aria-checked="false" data-perfil="largo">
-          <b>Começo, mas largo em poucos dias</b>
-          <span>Tenho vontade, mas a rotina não passa da primeira semana.</span>
-        </button>
-        <button type="button" class="opt" role="radio" aria-checked="false" data-perfil="zero">
-          <b>Nunca consegui ter uma rotina</b>
-          <span>Meu dia vai acontecendo e eu só vou apagando incêndio.</span>
-        </button>
-        <button type="button" class="opt" role="radio" aria-checked="false" data-perfil="baguncada">
-          <b>Tenho rotina, mas ela é bagunçada</b>
-          <span>Faço muita coisa, mas sinto que o dia não rende o que deveria.</span>
-        </button>
-      </div>
-      <button type="button" class="btn" id="perfil-continue" disabled>Continuar</button>
-      <p class="modal-note">Leva menos de 5 segundos. A página será adaptada ao seu momento.</p>
-    </div>
-  </div>
 
   <script>
   (function () {
@@ -717,116 +663,6 @@
       ativa: true,
       fim: "2026-11-30T23:59:59-03:00"
     };
-
-    /* ========= TEXTOS QUE MUDAM CONFORME A RESPOSTA ========= */
-    var PERFIS = {
-      largo: {
-        h1: 'Você não larga a rotina por falta de força de vontade. Larga porque ela foi feita para um dia que <em>não é o seu</em>.',
-        sub: 'Em 21 dias, o Rotinas Célebres te ajuda a montar uma rotina que encaixa no seu dia de verdade, e que continua de pé depois da primeira semana.',
-        probTitle: 'Começar é fácil. Difícil é chegar na <em>quinta-feira</em>.',
-        prob1: 'Segunda você acorda cedo, treina, lê, organiza tudo. Quarta já atrasou, quinta pulou, e no fim de semana a rotina inteira ficou para a próxima segunda.',
-        prob2: 'Você chega do trabalho às sete, cansado, e era justamente aí que estava o plano: treinar, estudar, arrumar a casa. Não acontece. No dia seguinte, você se cobra.',
-        prob3: '<strong>Não é preguiça.</strong> O plano foi feito para um dia ideal, com energia sobrando, e empurrado para a hora em que você tem menos energia. O Rotinas Célebres começa pelo dia que você tem hoje.',
-        finalTitle: 'Sua próxima segunda-feira não precisa ser mais um <em>recomeço</em>.',
-        cta: 'Quero uma rotina que dure',
-        cta2: 'Quero começar meus 21 dias',
-        cta3: 'Quero uma rotina que dure'
-      },
-      zero: {
-        h1: 'Nunca conseguiu manter uma rotina? Ninguém te mostrou como montar uma que <em>caiba no seu dia</em>.',
-        sub: 'Em 21 dias, você sai do dia que só vai acontecendo para um dia com ordem, começando pelo básico e sem mudar a vida inteira de uma vez.',
-        probTitle: 'Ter vontade é fácil. Difícil é saber <em>por onde começar</em>.',
-        prob1: 'Você acorda, pega o celular, vai para o trabalho e o dia vai passando. Quando chega a noite, a lista do que você queria fazer continua igual.',
-        prob2: 'Aí bate a vontade de mudar tudo: acordar às 5, treinar, ler, meditar. Dura dois dias, porque ninguém sustenta tantas mudanças ao mesmo tempo.',
-        prob3: '<strong>Não é falta de capacidade.</strong> Faltou um começo do tamanho certo. O Rotinas Célebres começa pequeno e vai somando: primeiro o ritmo, depois a constância, e só então a rotina completa.',
-        finalTitle: 'A sua primeira rotina de verdade pode começar <em>hoje</em>.',
-        cta: 'Quero começar minha rotina',
-        cta2: 'Quero começar meus 21 dias',
-        cta3: 'Quero começar minha rotina'
-      },
-      baguncada: {
-        h1: 'Você até tem uma rotina. O problema é que ela <em>trabalha contra você</em>.',
-        sub: 'Em 21 dias, você reorganiza o seu dia para que o que importa aconteça primeiro, e não só quando sobra tempo.',
-        probTitle: 'Estar ocupado é fácil. Difícil é fazer o que <em>importa</em>.',
-        prob1: 'Você faz muita coisa: trabalho, casa, mensagens, compromissos. Mas no fim do dia o treino, o estudo ou o projeto pessoal ficaram para depois de novo.',
-        prob2: 'Isso acontece porque o que importa vai sempre para o fim do dia, justamente na hora em que você está mais cansado.',
-        prob3: '<strong>Não é falta de tempo.</strong> É a ordem do dia. O Rotinas Célebres reorganiza essa ordem para que as suas prioridades caiam nos horários em que você ainda tem energia.',
-        finalTitle: 'O seu dia já é cheio. Agora ele pode ser <em>seu</em>.',
-        cta: 'Quero organizar meu dia',
-        cta2: 'Quero começar meus 21 dias',
-        cta3: 'Quero organizar meu dia'
-      }
-    };
-
-    var KEY = 'rc_perfil_v1';
-    function lerPerfil() { try { var v = localStorage.getItem(KEY); return PERFIS[v] ? v : null; } catch (e) { return null; } }
-    function salvarPerfil(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
-
-    function aplicarPerfil(id) {
-      var t = PERFIS[id] || PERFIS.largo;
-      document.querySelectorAll('[data-p]').forEach(function (el) {
-        var k = el.getAttribute('data-p');
-        if (t[k] != null) el.innerHTML = t[k];
-      });
-      document.documentElement.setAttribute('data-perfil', id);
-    }
-
-    /* ---------- Janela da pergunta ---------- */
-    var modal = document.getElementById('perfil-modal');
-    var opts = modal.querySelectorAll('.opt');
-    var cont = document.getElementById('perfil-continue');
-    var escolhido = null;
-    var foco = null;
-
-    function abrir() {
-      foco = document.activeElement;
-      modal.hidden = false;
-      document.body.classList.add('modal-open');
-      escolhido = lerPerfil();
-      opts.forEach(function (o) { o.setAttribute('aria-checked', String(o.dataset.perfil === escolhido)); });
-      cont.disabled = !escolhido;
-      // Foco na janela, não numa opção, para nenhuma parecer marcada antes do toque
-      var marcada = modal.querySelector('.opt[aria-checked="true"]');
-      (marcada || modal.querySelector('.modal-box')).focus();
-    }
-    function fechar() {
-      modal.hidden = true;
-      document.body.classList.remove('modal-open');
-      if (foco && foco.focus) foco.focus();
-    }
-    opts.forEach(function (o, i) {
-      o.addEventListener('click', function () {
-        escolhido = o.dataset.perfil;
-        opts.forEach(function (x) { x.setAttribute('aria-checked', String(x === o)); });
-        cont.disabled = false;
-      });
-      o.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-          e.preventDefault();
-          var n = opts[(i + (e.key === 'ArrowDown' ? 1 : opts.length - 1)) % opts.length];
-          n.focus(); n.click();
-        }
-      });
-    });
-    cont.addEventListener('click', function () {
-      if (!escolhido) return;
-      salvarPerfil(escolhido);
-      aplicarPerfil(escolhido);
-      if (window.fbq) fbq('trackCustom', 'PerfilRotina', { perfil: escolhido });
-      fechar();
-    });
-    // Mantém o foco dentro da janela enquanto ela está aberta
-    modal.addEventListener('keydown', function (e) {
-      if (e.key !== 'Tab') return;
-      var f = [].slice.call(modal.querySelectorAll('button:not([disabled])'));
-      var first = f[0], last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-    });
-    document.getElementById('change-profile').addEventListener('click', abrir);
-
-    var salvo = lerPerfil();
-    if (salvo) aplicarPerfil(salvo); else abrir();
 
     /* ---------- VSL ---------- */
     if (VSL_EMBED_URL) {
@@ -859,8 +695,7 @@
     document.querySelectorAll('a.cta').forEach(function (a) {
       a.addEventListener('click', function () {
         if (window.fbq) fbq('track', 'InitiateCheckout', {
-          content_name: a.dataset.plan,
-          perfil: document.documentElement.getAttribute('data-perfil') || 'sem_resposta'
+          content_name: a.dataset.plan
         });
       });
     });
